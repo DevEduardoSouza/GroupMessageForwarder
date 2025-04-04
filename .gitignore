@@ -1,0 +1,24 @@
+# Node.js e npm
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+anotacao.md
+
+# Arquivos de compilação do TypeScript
+dist/
+
+# Arquivos de ambiente
+.env
+data
+
+# Arquivos de log e temporários
+*.log
+*.tmp
+
+log
+
+# Arquivos de IDEs
+.vscode/
+.idea/

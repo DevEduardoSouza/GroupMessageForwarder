@@ -1,0 +1,129 @@
+Documentação do Bot de Encaminhamento de Mensagens do Telegram
+Este bot foi criado para monitorar um grupo do Telegram (grupo fonte) e encaminhar as mensagens para outro grupo (grupo destino). Além disso, ele permite que você defina substituições de texto que serão aplicadas às mensagens antes de serem enviadas. Siga os passos abaixo para configurar e usar o bot.
+
+Pré-Requisitos
+Antes de começar, você precisará de:
+
+Node.js instalado no seu computador. Se não tiver, faça o download em nodejs.org.
+
+Uma conta no Telegram.
+
+Os dados de acesso à API do Telegram:
+
+TELEGRAM_API_ID
+
+TELEGRAM_API_HASH
+
+TELEGRAM_PHONE (seu número de telefone cadastrado no Telegram)
+
+Token do bot e ID do grupo onde você é administrador (usado para encaminhar as mensagens).
+
+Passo a Passo para Configuração
+1. Preparar os Arquivos do Projeto
+Código do Bot: O código-fonte do bot está dividido em dois arquivos principais:
+
+bot.js (contém a lógica do bot)
+
+package.json (lista as dependências e configurações do projeto)
+
+Arquivo de Variáveis de Ambiente:
+Crie um arquivo chamado .env na raiz do projeto com o seguinte conteúdo (preencha com seus dados):
+
+env
+Copiar
+Editar
+# Token do seu bot do Telegram
+TELEGRAM_BOT_TOKEN=SEU_BOT_TOKEN_AQUI
+
+# ID do seu grupo (grupo destino onde você é admin)
+MY_GROUP_ID=-100XXXXXXXXXX
+
+TELEGRAM_PHONE=+55SEUNUMERO
+TELEGRAM_API_ID=SEU_API_ID
+TELEGRAM_API_HASH=SEU_API_HASH
+2. Instalar as Dependências
+Abra o terminal (ou prompt de comando) na pasta do projeto e execute:
+
+bash
+Copiar
+Editar
+npm install
+Isso fará o download dos pacotes necessários, como dotenv e telegram.
+
+3. Executar o Bot
+No terminal, digite:
+
+bash
+Copiar
+Editar
+npm start
+O bot será iniciado e você verá mensagens no terminal solicitando informações.
+
+Configuração Inicial e Uso
+Conexão com o Telegram
+Primeiro Login:
+Ao rodar o bot pela primeira vez, ele pedirá seu número de telefone, senha 2FA (se você tiver) e o código enviado pelo Telegram. Isso cria uma sessão que será salva para que você não precise fazer login novamente.
+
+Salvar Sessão:
+A sessão é salva no arquivo session.json. Esse arquivo permite que o bot reconecte sem precisar solicitar seus dados novamente.
+
+Configurando Grupos
+O bot trabalha com dois grupos:
+
+Grupo Fonte: Grupo que será monitorado para captar as mensagens.
+
+Grupo Destino: Grupo onde as mensagens serão enviadas.
+
+Durante a execução, o bot perguntará se você deseja configurar os grupos. Você poderá:
+
+Alterar o nome do grupo fonte (deve ser o username, começando com “@”).
+
+Alterar o ID do grupo destino.
+
+As configurações são salvas no arquivo config.json.
+
+Gerenciando Substituições de Texto
+O bot permite que você defina regras para substituir partes do texto das mensagens. Isso é útil, por exemplo, para corrigir erros ou padronizar termos.
+
+Opções de Substituição:
+
+Ver todas as substituições: Lista todas as regras atualmente cadastradas.
+
+Adicionar nova substituição: Permite definir um novo par de textos, onde o “original” será substituído pelo “novo” texto.
+
+Remover substituição: Exclui uma regra que não é mais necessária.
+
+As substituições são salvas no arquivo replacements.json.
+
+Comandos Durante a Execução
+Enquanto o bot estiver rodando, você pode digitar comandos no terminal:
+
+substituir
+Abre o gerenciador de substituições para adicionar, remover ou listar regras.
+
+grupos
+Abre o menu para reconfigurar os grupos fonte e destino.
+
+Funcionamento do Bot
+Monitoramento:
+O bot monitora continuamente as mensagens do grupo fonte configurado.
+
+Aplicação de Substituições:
+Sempre que uma nova mensagem chegar, o bot aplica todas as regras de substituição definidas.
+
+Encaminhamento:
+Após as alterações, a mensagem modificada é enviada para o grupo destino.
+
+Encerrando o Bot
+Para encerrar o bot de forma segura, basta pressionar Ctrl+C no terminal. O bot realizará um encerramento adequado e fechará a conexão com o Telegram.
+
+Dicas e Observações
+Backup dos Arquivos de Configuração:
+Mantenha uma cópia dos arquivos session.json, config.json e replacements.json para não perder suas configurações.
+
+Segurança:
+Guarde seu arquivo .env com cuidado, pois ele contém informações sensíveis.
+
+Erros:
+Caso algum erro ocorra, verifique as mensagens de log no terminal. Elas podem indicar problemas na conexão ou na configuração dos grupos e substituições.
+
